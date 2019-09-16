@@ -26,11 +26,11 @@ def about_page(request):
 
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)
-    if request.method == "POST":
-        print(request.POST)
-        print(request.POST.get("fullname"))
-        print(request.POST.get("email"))
-        print(request.POST.get("content"))
+    # if request.method == "POST":
+        # print(request.POST)
+        # print(request.POST.get("fullname"))
+        # print(request.POST.get("email"))
+        # print(request.POST.get("content"))
 
     context = {
         "title" :   "this contact",

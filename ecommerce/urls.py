@@ -20,22 +20,24 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from .views import home_page, about_page, contact_page, login_page, register_page
 from products.views import (
-    product_list_view,
-    ProductFeaturedListView,
-    ProductFeaturedDetailView,
+    # product_list_view,
+    # ProductFeaturedListView,
+    # ProductFeaturedDetailView,
     ProductDetailSlugView,
     ProductListView,
-    ProductDetailView,
-    product_detail_view
+    # ProductDetailView,
+    # product_detail_view
 )
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    url(r'^$', home_page),
-    url(r'^about/$', about_page),
-    url(r'^contact/$', contact_page),
-    url(r'^login/$', login_page),
-    url(r'^register/$', register_page),
-    url(r'^product/', include('products.urls')),
+    url(r'^$', home_page, name='home'),
+    url(r'^about/$', about_page, name='about'),
+    url(r'^contact/$', contact_page, name='contact'),
+    url(r'^login/$', login_page, name='login'),
+    url(r'^register/$', register_page, name='register'),
+    url(r'^products/', include('products.urls', namespace='products')),
+    url(r'^bootstrap/$', TemplateView.as_view(template_name='bootstrap/example.html')),
     # url(r'^product-fbv/$', product_list_view),
     # url(r'^product/$', ProductListView.as_view()),
     # url(r'^featured/$', ProductFeaturedListView.as_view()),
