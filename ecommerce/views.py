@@ -5,14 +5,15 @@ from django.contrib.auth import authenticate, login, get_user_model
 
 
 def home_page(request):
+    # print(request.session.get('cart_id', 'Unknown'))
     context = {
         "title" : "this is my home",
         "content" : "this is the home page"
     }
 
-    if request.user.is_authenticated():
-        context["premium_content"] = "yeahhhhhhh"
-        print(context)
+    # if request.user.is_authenticated():
+    #     context["premium_content"] = "yeahhhhhhh"
+    #     print(context)
     return render(request, 'home_page.html', context)
 
 
@@ -39,10 +40,10 @@ def contact_page(request):
     }
     # is_valid check if all data are filled and are correct for example
     # if an email doesn't have a @ it won't be valid
-    if contact_form.is_valid():
+    # if contact_form.is_valid():
         # cleaned_data is a dictionary which contains form information.
         # it is part of Form class and every class which is inherited from that
-        print(contact_form.cleaned_data)
+        # print(contact_form.cleaned_data)
     return render(request, 'contact/view.html', context)
 
 
@@ -75,7 +76,7 @@ def register_page(request):
     form = RegisterForm(request.POST or None)
     context = {"form":form}
     if form.is_valid():
-        print(form.cleaned_data)
+        # print(form.cleaned_data)
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         email = form.cleaned_data.get("email")

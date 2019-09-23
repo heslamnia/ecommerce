@@ -19,6 +19,8 @@ from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
 from .views import home_page, about_page, contact_page, login_page, register_page
+from carts.views import cart_home
+
 from products.views import (
     # product_list_view,
     # ProductFeaturedListView,
@@ -36,7 +38,9 @@ urlpatterns = [
     url(r'^contact/$', contact_page, name='contact'),
     url(r'^login/$', login_page, name='login'),
     url(r'^register/$', register_page, name='register'),
+    url(r'^cart/$', cart_home, name='cart'),
     url(r'^products/', include('products.urls', namespace='products')),
+    url(r'^search/', include('search.urls', namespace='search')),
     url(r'^bootstrap/$', TemplateView.as_view(template_name='bootstrap/example.html')),
     # url(r'^product-fbv/$', product_list_view),
     # url(r'^product/$', ProductListView.as_view()),
