@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
+
+
 class ContactForm(forms.Form):
     fullname = forms.CharField(
         widget=forms.TextInput(
@@ -36,6 +38,7 @@ class ContactForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
 
 class RegisterForm(forms.Form):
     username = forms.CharField()
