@@ -5,15 +5,10 @@ from django.contrib.auth import authenticate, login, get_user_model
 
 
 def home_page(request):
-    # print(request.session.get('cart_id', 'Unknown'))
     context = {
         "title" : "this is my home",
         "content" : "this is the home page"
     }
-
-    # if request.user.is_authenticated():
-    #     context["premium_content"] = "yeahhhhhhh"
-    #     print(context)
     return render(request, 'home_page.html', context)
 
 
@@ -27,11 +22,6 @@ def about_page(request):
 
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)
-    # if request.method == "POST":
-        # print(request.POST)
-        # print(request.POST.get("fullname"))
-        # print(request.POST.get("email"))
-        # print(request.POST.get("content"))
 
     context = {
         "title" :   "this contact",
@@ -50,8 +40,6 @@ def contact_page(request):
 def login_page(request):
     form = LoginForm(request.POST or None)
     context = {"form":form}
-    # print("user loged in is:")
-    # print(request.user.is_authenticated())
 
     if form.is_valid():
         # print(form.cleaned_data)
@@ -61,7 +49,6 @@ def login_page(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            # print(request.user.is_authenticated())
             return redirect("/")
         else:
             print("user is none")
@@ -76,7 +63,6 @@ def register_page(request):
     form = RegisterForm(request.POST or None)
     context = {"form":form}
     if form.is_valid():
-        # print(form.cleaned_data)
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         email = form.cleaned_data.get("email")

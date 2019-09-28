@@ -46,7 +46,6 @@ class RegisterForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(label="confirm password", widget=forms.PasswordInput)
 
-
     def clean_username(self):
         username = self.cleaned_data.get('username')
         qs = User.objects.filter(username=username)

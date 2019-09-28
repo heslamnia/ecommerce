@@ -72,13 +72,12 @@ class Product(models.Model):
     objects = ProductManager()
 
     def get_absolute_url(self):
-        # return '/product/{slug}/'.format(slug=self.slug)
         return reverse('products:detail', kwargs={'slug':self.slug})
     # null=True  means if there is no image, database doesn't get mad
     # blank=True  means if there is no image, django doesn't get mad.
     # when blank is True the field in the admin becomes gray instead of black.
 
-    # question : how does upload_to pass instance and filepath to upload_image_path?
+    # ques: how does upload_to pass instance and filepath to upload_image_path?
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
 
     def __str__(self):
